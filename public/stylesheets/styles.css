@@ -8,7 +8,7 @@
             margin: 0 auto;
             width: 560px;
         }
-        h1{
+        h1,h3{
             color:  rgb( 33, 150, 243);
             float: left;
             width: 100px;
@@ -105,6 +105,7 @@
 		color: rgba( 0, 0, 0, 0.38);
         cursor: pointer;
     }
+
 .btnReset, .btnPlace{
 	display: inline-block;
 	height: 25px;
@@ -118,3 +119,11 @@
 .btnReset:focus, .btnPlace:focus {
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
 }
+
+.btnSubmit{
+    width: 273px!important;
+    margin-bottom: 10px!important;
+    height: auto!important;
+}
+
+.btnHidden{ display: none; }

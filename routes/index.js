@@ -15,5 +15,14 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Juego de Hundir la flota',jugadores });
 });
 
+router.post('/cargarBarcos', function(req, res, next) {
+  console.log(req.body);
+
+  
+});
+
+
+
+
 module.exports = router;
 

@@ -13,8 +13,11 @@
   <body>
     <div class="outterContainer">
       <div class="contenedor">
-          <h1>Coloca tus barcos jugador:<%=jugadores%> </h1>
-          <form id="shipBoard" class="tablero" action="" method="POST" name="" >
+          <h1>Coloca tus barcos
+            <small>jugador: <%=jugadores%> </small> </h1>
+          
+          <form class="tablero" action="/cargarBarcos" method="POST" name="" >
+            <div id="shipBoard">
            
             <% for (var i=1; i<=10; i++){ %>
               <div>
@@ -23,9 +26,10 @@
                   
                   <input id="<%=i%>_<%=j%>" name="<%=i%>_<%=j%>" type="checkbox" value="<%=i%>_<%=j%>">
                 <% } %>  
-
+                </div>
             <% } %>  
-              
+          </div>
+          <input id="btnSubmit" class="btn btnShip btnSubmit btnHidden" type="submit" onclick="removeDisableBoxes()" value="Enviar Colocación" >
           </form>
           <ul id="barcos" class="barcos">
               <li>
