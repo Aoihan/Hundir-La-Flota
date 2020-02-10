@@ -1,0 +1,120 @@
+ *{ 
+            box-sizing: border-box;
+            font-family: 'Ubuntu', sans-serif;
+         }
+        .outterContainer{ text-align: center; }
+        .contenedor{
+            display: inline-block;
+            margin: 0 auto;
+            width: 560px;
+        }
+        h1{
+            color:  rgb( 33, 150, 243);
+            float: left;
+            width: 100px;
+            text-align: right;
+            margin: 0 10px 0 0;
+        }
+        .barcos{ 
+            border: 0px solid black;
+            margin: 0;
+            float: left;
+            padding: 0;
+            list-style: none;
+            width: 150px;
+        }
+            .barcos li{ margin: 0 0 5px 0; }
+            .barcos li.active{
+                display: block;
+    			border: 1px solid rgb( 33, 150, 243);
+    			height: 125px;
+    			width: 150px;
+    			padding: 7px 5px 0 5px;
+				transition: all 0.5s;
+            }
+				.barcos li.active p{ text-align: center; }
+        .tablero{
+            border: 1px solid  rgb( 33, 150, 243);
+            display: block;
+            padding-left: 6px;
+            padding-top: 6px;
+            width: 290px;
+            float: left;
+            margin-right: 10px;
+        }
+            .tablero input{
+                height: 24px;
+                margin: 0px;
+                padding: 0px 6px 6px 0;
+                width: 24px;
+            }
+
+            .btn {
+    position: relative;
+    display: inline-block;
+    border: none;
+    border-radius: 4px;
+    padding: 0 16px;
+    min-width: 64px;
+    height: 36px;
+    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    color: rgb( 255, 255, 255);
+    background-color: rgb( 33, 150, 243);
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 36px;
+    overflow: hidden;
+    outline: none;
+    transition: box-shadow 0.2s;
+}
+
+.btn::-moz-focus-inner {
+    border: none;
+}
+/* Hover, Focus */
+.btn:hover,
+.btn:focus {
+    background-color: rgb(90, 182, 255);
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+}
+/* Active */
+.btn:active {
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.btn:active::after {
+    opacity: 0.32;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0s;
+}
+
+/* Disabled */
+.btnDisabled {
+    color: rgba(0, 0, 0, 0.38);
+    background-color: rgba(0, 0, 0, 0.12);
+    box-shadow: none;
+}
+    .btnDisabled:hover, .btnDisabled:focus, .btnDisabled:active{
+        background-color: rgba( 0, 0, 0, 0.12);
+        box-shadow: none;
+		color: rgba( 0, 0, 0, 0.38);
+        cursor: pointer;
+    }
+.btnReset, .btnPlace{
+	display: inline-block;
+	height: 25px;
+	margin: 0px 0px 0 5px;
+	width: 25px;
+}
+	.btnReset img, .btnPlace img{
+		width: 100%;
+	}
+.btnReset:hover, .btnPlace:hover,
+.btnReset:focus, .btnPlace:focus {
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+}
