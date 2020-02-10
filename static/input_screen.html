@@ -16,9 +16,9 @@
     <div class="outterContainer">
     <div class="contenedor">
         <h1>Coloca tus barcos</h1>
-        <form id="shipBoard" class="tablero" action="" method="POST" name="" >
+        <form class="tablero" action="" method="POST" name="" >
+            <div id="shipBoard">
             <div>
-                
                 <input id="1_1" name="1_1" type="checkbox" value="1_1">
                 <input id="1_2" name="1_2" type="checkbox" value="1_2">
                 <input id="1_3" name="1_3" type="checkbox" value="1_3">
@@ -30,7 +30,6 @@
                 <input id="1_9" name="1_9" type="checkbox" value="1_9">
                 <input id="1_10" name="1_10" type="checkbox" value="1_10">
             </div>
-            
             <div>
                 <input id="2_1" name="2_1" type="checkbox" value="2_1">
                 <input id="2_2" name="2_2" type="checkbox" value="2_2">
@@ -139,10 +138,12 @@
                 <input id="10_9" name="10_9" type="checkbox" value="10_9">
                 <input id="10_10" name="10_10" type="checkbox" value="10_10">
             </div>
+            </div>
+            <input id="btnSubmit" class="btn btnShip btnSubmit btnHidden" type="submit" onclick="removeDisableBoxes()" value="Enviar Colocación" >
         </form>
         <ul id="barcos" class="barcos">
             <li>
-				<a id="portaaviones" class="btn btnShip _btnDisabled" href="#" onclick="readyBoardforPlacement()">Portaaviones</a>
+				<a id="portaaviones" class="btn btnShip" href="#" onclick="readyBoardforPlacement()">Portaaviones</a>
 				
 			</li>
             <li><a id="submarino_1" class="btn btnShip" href="#" onclick="readyBoardforPlacement()">Submarino</a></li>
