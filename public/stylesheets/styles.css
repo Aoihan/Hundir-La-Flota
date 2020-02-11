@@ -8,7 +8,7 @@
             margin: 0 auto;
             width: 560px;
         }
-        h1{
+        h1,h3{
             color:  rgb( 33, 150, 243);
             float: left;
             width: 100px;

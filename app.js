@@ -13,6 +13,14 @@ var keyAleatoria1= Math.round(Math.random()*1000000);
 var keyAleatoria2= Math.round(Math.random()*1000000);
 
 // view engine setup
+app.use(cookieSession({
+  name: 'campurriana', //Nombre que recibe la cookie
+  
+  keys:[keyAleatoria1,keyAleatoria2],
+  maxAge: 5*60*1000 //duracion en milisegundos de la validez de la cookie
+}));
+
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -42,11 +50,6 @@ app.use(function(err, req, res, next) {
 });
 
 app.use(cookieParser());
-app.use(cookieSession({
-  name: 'campurriana', //Nombre que recibe la cookie
-  
-  keys:[keyAleatoria1,keyAleatoria2],
-  maxAge: 5*60*1000 //duracion en milisegundos de la validez de la cookie
-}));
+
 
 module.exports = app;
