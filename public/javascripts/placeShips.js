@@ -62,9 +62,9 @@ function placeShip( e ){
 	console.log('shipSelected: '+shipSelected+' shipLength: '+shipLength+' cellsPlaced: '+cellsPlaced+' placedShips: '+placedShips);
 
 	if( placementCorrect ){
-		checkBox.id = shipSelected + '_' + checkBox.id;
-		checkBox.name = shipSelected + '_' + checkBox.name;
-		checkBox.value = shipSelected + '_' + checkBox.value;
+		checkBox.id = shipSelected //+ '_' + checkBox.id;
+		checkBox.name = shipSelected //+ '_' + checkBox.name;
+		checkBox.value = checkBox.value;
 		cellsPlaced = cellsPlaced + 1;
 	}else{
 		// lanzar error
@@ -96,7 +96,7 @@ function lockPlacement( e ){
 }
 
 function setMasterValues( id ){
-	shipSelected = getShipType( id );
+	shipSelected =  id;
 	shipLength = getShipSpaces( getShipType( id ) );
 	//console.log('shipSelected: '+shipSelected+' - shipLength: '+shipLength);
 }
@@ -159,9 +159,9 @@ function resetBoard(){
 		var isDisabled = board[ i ].disabled;
 		if( isChecked && !isDisabled ){
 			board[ i ].checked = false;
-			board[ i ].id = board[ i ].id.split( '_' )[1] + '_' + board[ i ].id.split( '_' )[2];
-			board[ i ].name = board[ i ].name.split( '_' )[1] + '_' + board[ i ].name.split( '_' )[2];
-			board[ i ].value = board[ i ].value.split( '_' )[1] + '_' + board[ i ].value.split( '_' )[2];
+			board[ i ].id = board[ i ].value;
+			board[ i ].name = board[ i ].value;
+			//board[ i ].value = board[ i ].value.split( '_' )[1] + '_' + board[ i ].value.split( '_' )[2];
 		}
 	}
 }
