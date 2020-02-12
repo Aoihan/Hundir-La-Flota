@@ -1,3 +1,4 @@
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -9,15 +10,15 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-var keyAleatoria1= Math.round(Math.random()*1000000);
-var keyAleatoria2= Math.round(Math.random()*1000000);
+var keyAleatoria1= "dgdfgdfgdfgdfgdfg"+ Math.round(Math.random()*100000000);
+var keyAleatoria2= "cdsadfwryatyesdfsdf" + Math.round(Math.random()*100000000);
 
 // view engine setup
 app.use(cookieSession({
   name: 'campurriana', //Nombre que recibe la cookie
   
   keys:[keyAleatoria1,keyAleatoria2],
-  maxAge: 5*60*1000 //duracion en milisegundos de la validez de la cookie
+  maxAge: 2*60*60*1000 //duracion en milisegundos de la validez de la cookie
 }));
 
 
@@ -30,6 +31,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

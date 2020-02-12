@@ -52,7 +52,7 @@
     <table>
         <thead>
             <tr>
-                <th colspan="10">Tablero JUGADOR 1</th>
+                <th colspan="10">Tablero JUGADOR <%= player %></th>
             </tr>
         </thead>
         <tbody>
@@ -63,16 +63,33 @@
 
 
                     <td>
-                    
-                        <% if (array_Tablero_Ships[i][j]==0){
-                            %> <img src="img/cell_blank.png" <%
-                        }  else if (array_Tablero_Ships[i][j]==1){
-                            %> <img src="img/cell_ship.png" <%
-                        } else if (array_Tablero_Ships[i][j]==2){
-                            %> <img src="img/cell_shipDown.png" <%
-                        } else if (array_Tablero_Ships[i][j]==3){
-                            %> <img src="img/cell_shot.png" <%
+                        
+                        <% if (player==1){
+                            if (array_Tablero_Ships[i][j]==0){
+                                %> <img src="img/cell_blank.png" <%
+                            }  else if (array_Tablero_Ships[i][j]==1){
+                                %> <img src="img/cell_ship.png" <%
+                            } else if (array_Tablero_Ships[i][j]==2){
+                                %> <img src="img/cell_shipDown.png" <%
+                            } else if (array_Tablero_Ships[i][j]==3){
+                                %> <img src="img/cell_shot.png" <%
+                            }
                         }%>
+
+
+                        <% if (player==2){
+                             if (array_Tablero_Ships_Player2[i][j]==0){
+                                %> <img src="img/cell_blank.png" <%
+                            }  else if (array_Tablero_Ships_Player2[i][j]==1){
+                                %> <img src="img/cell_ship.png" <%
+                            } else if (array_Tablero_Ships_Player2[i][j]==2){
+                                %> <img src="img/cell_shipDown.png" <%
+                            } else if (array_Tablero_Ships_Player2[i][j]==3){
+                                %> <img src="img/cell_shot.png" <%
+                            }
+                        }%>
+
+                       
 
 
                     </td>
