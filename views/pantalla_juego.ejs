@@ -48,12 +48,26 @@
 </head>
 
 <body>
-
+<% if(contador == 21 || contador2 == 21){
+    
+        if(contador == 21 ){ %>
+            <h1>El JUGADOR 1 ha ganado</h1>
+        <%} else {%>
+            <h1>El JUGADOR 2 ha ganado</h1>
+        <%}
+}else{%> 
     <table>
         <thead>
             <tr>
-                <th colspan="5">Tablero JUGADOR <%= player %></th>
-                <th colspan="5" style="text-align: right;">Turno: <%=turno%></th>
+                <th colspan="4">Tab. JUGADOR <%= player %></th>
+                <th colspan="3" style="text-align: right;"> -- Turno: <%=turno%></th>
+                <th colspan="3" style="text-align: right;"> -- Impactos: 
+                    <% if(player == 1 ){ %>
+                        <%=contador%>
+                    <%} else {%>
+                        <%=contador2%>
+                    <%}%>
+                    </th>
             </tr>
         </thead>
         <tbody>
@@ -167,8 +181,8 @@
             })
           }, 3000);
         </script>
-      <% } %>
+    <% } %>
 
-
+<% } %>
 </body>
 </html>

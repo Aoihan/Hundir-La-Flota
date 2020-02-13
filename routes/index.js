@@ -1,6 +1,8 @@
 
 var express = require("express");
 var router = express.Router();
+var contador=0;
+var contador2=0;
 var jugadores = 0;
 var turno = 1;
 var array_Tablero_Ships = [];
@@ -76,9 +78,9 @@ router.get("/pantalla_juego", function(req, res, next) {
   const session = req.session;
   var player= session.jugador;
   if(player == 1){
-    res.render("pantalla_juego", { title: "Juego de Hundir la flota",array_Tablero_Ships, array_Tablero_Ships_Player2,player, turno, meToca:(turno==1)});
+    res.render("pantalla_juego", { title: "Juego de Hundir la flota",array_Tablero_Ships, array_Tablero_Ships_Player2,player, turno, contador, contador2, meToca:(turno==1)});
   }else{
-    res.render("pantalla_juego", { title: "Juego de Hundir la flota",array_Tablero_Ships, array_Tablero_Ships_Player2,player, turno, meToca:(turno==2)});
+    res.render("pantalla_juego", { title: "Juego de Hundir la flota",array_Tablero_Ships, array_Tablero_Ships_Player2,player, turno, contador, contador2, meToca:(turno==2)});
   }
 
   
@@ -105,6 +107,7 @@ router.post("/resolverTurno", function(req, res, next) {
         array_Tablero_Ships_Player2[fila][columna]=2
       }else if (disparo==1){
         array_Tablero_Ships_Player2[fila][columna]=3
+        contador ++;
       }
    }else{
     var disparo = array_Tablero_Ships[fila][columna];
@@ -113,6 +116,7 @@ router.post("/resolverTurno", function(req, res, next) {
       array_Tablero_Ships[fila][columna]=2
     }else if (disparo==1){
       array_Tablero_Ships[fila][columna]=3
+      contador2 ++;
     }
    }
 
@@ -133,6 +137,8 @@ router.post("/resolverTurno", function(req, res, next) {
      console.log('metoca: ' + meToca + ' ganador: '+ganador+' turno: '+turno+' player: '+player);
      res.redirect('pantalla_juego');
    }
+
+   
  
 
 
