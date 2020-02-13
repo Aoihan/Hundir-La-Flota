@@ -52,7 +52,8 @@
     <table>
         <thead>
             <tr>
-                <th colspan="10">Tablero JUGADOR <%= player %></th>
+                <th colspan="5">Tablero JUGADOR <%= player %></th>
+                <th colspan="5" style="text-align: right;">Turno: <%=turno%></th>
             </tr>
         </thead>
         <tbody>
@@ -70,9 +71,9 @@
                             }  else if (array_Tablero_Ships[i][j]==1){
                                 %> <img src="img/cell_ship.png" <%
                             } else if (array_Tablero_Ships[i][j]==2){
-                                %> <img src="img/cell_shipDown.png" <%
-                            } else if (array_Tablero_Ships[i][j]==3){
                                 %> <img src="img/cell_shot.png" <%
+                            } else if (array_Tablero_Ships[i][j]==3){
+                                %> <img src="img/cell_shipDown.png" <%
                             }
                         }%>
 
@@ -83,9 +84,9 @@
                             }  else if (array_Tablero_Ships_Player2[i][j]==1){
                                 %> <img src="img/cell_ship.png" <%
                             } else if (array_Tablero_Ships_Player2[i][j]==2){
-                                %> <img src="img/cell_shipDown.png" <%
-                            } else if (array_Tablero_Ships_Player2[i][j]==3){
                                 %> <img src="img/cell_shot.png" <%
+                            } else if (array_Tablero_Ships_Player2[i][j]==3){
+                                %> <img src="img/cell_shipDown.png" <%
                             }
                         }%>
 
@@ -112,18 +113,36 @@
 
             <%for ( var i=0; i<10; i++ ) { %>
                 <tr>
-            <%for ( var j=0; j<10; j++ ) { %>
+                <%for ( var j=0; j<10; j++ ) { %>
 
-                <td>
-                    <form action="resolverTurno" method="POST">
-                        <input type="hidden" name="fila" value="<%=i%>">
-                        <input type="hidden" name="columna" value="<%=j%>">
-                        <input type="submit" name="·" value="·">
-                    </form>
+                    <td>
+                   
+
+                    <% if (player == 1){ 
+                        if(array_Tablero_Ships_Player2[i][j] == 0 || array_Tablero_Ships_Player2[i][j] == 1 ){ %>
+                            <form action="resolverTurno" method="POST">
+                                <input type="hidden" name="fila" value="<%=i%>">
+                                <input type="hidden" name="columna" value="<%=j%>">
+                                <input type="submit" name="·" value="·">
+                            </form> 
+                        <%} %>
+                    <% }else{ %>
+                    
+                    <% if(array_Tablero_Ships[i][j]==0 || array_Tablero_Ships[i][j]==1 ){ %>
+                        <form action="resolverTurno" method="POST">
+                            <input type="hidden" name="fila" value="<%=i%>">
+                            <input type="hidden" name="columna" value="<%=j%>">
+                            <input type="submit" name="·" value="·">
+                        </form> 
+                    <% } %>
+                    
+                    <% } %>
+
+
                 </td>
                
                 
-             <% } %>  
+            <% } %>  
                 </tr>
         <% } %>    
 
@@ -137,5 +156,19 @@
         <input type="text" placeholder="Escribir aqui el mensaje...">
         <input type="submit"> 
     </form>
+
+    <% if (!meToca) { %>
+        <script>
+          setInterval(function () {
+            fetch('/resolverTurno').then(function(response) {
+              if (response.ok) {
+                location.reload();
+              }
+            })
+          }, 3000);
+        </script>
+      <% } %>
+
+
 </body>
 </html>

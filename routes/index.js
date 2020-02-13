@@ -2,6 +2,7 @@
 var express = require("express");
 var router = express.Router();
 var jugadores = 0;
+var turno = 1;
 var array_Tablero_Ships = [];
 var array_Tablero_Ships_Player2 = [];
 var array_Tablero_Tiradas = [];
@@ -45,13 +46,13 @@ router.post("/cargarBarcos", function(req, res, next) {
   
   const session = req.session;
   for (var i = 0; i < 10; i++) {
-    if(session.jugador==1){
+   // if(session.jugador==1){
       array_Tablero_Ships.push([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
       array_Tablero_Tiradas.push([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-    }else{
+   // }else{
       array_Tablero_Ships_Player2.push([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
       array_Tablero_Tiradas_Player2.push([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-    }
+   // }
   }
 
   console.log('session.jugador: '+session.jugador);
@@ -75,23 +76,66 @@ router.get("/pantalla_juego", function(req, res, next) {
   const session = req.session;
   var player= session.jugador;
   if(player == 1){
-    res.render("pantalla_juego", { title: "Juego de Hundir la flota",array_Tablero_Ships,player});
+    res.render("pantalla_juego", { title: "Juego de Hundir la flota",array_Tablero_Ships, array_Tablero_Ships_Player2,player, turno, meToca:(turno==1)});
   }else{
-    res.render("pantalla_juego", { title: "Juego de Hundir la flota",array_Tablero_Ships_Player2,player});
+    res.render("pantalla_juego", { title: "Juego de Hundir la flota",array_Tablero_Ships, array_Tablero_Ships_Player2,player, turno, meToca:(turno==2)});
   }
 
   
 
 });
 
+router.get("/resolverTurno", function(req, res, next) {
+  const meToca = (turno == req.session.jugador);
+  if (meToca) {
+    res.status(200).json(true); //ok
+  } else {
+    res.status(400).json(false); //fallo (si no me toca)
+  }
+})
+
 router.post("/resolverTurno", function(req, res, next) {
    const { fila, columna } = req.body;
    const session = req.session;
   var player= session.jugador;
   if(player == 1){
-      var prueba = array_Tablero_Ships_Player2[fila][columna];
-      console.log("prueba:" + prueba);
+      var disparo = array_Tablero_Ships_Player2[fila][columna];
+      
+      if(disparo == 0){
+        array_Tablero_Ships_Player2[fila][columna]=2
+      }else if (disparo==1){
+        array_Tablero_Ships_Player2[fila][columna]=3
+      }
+   }else{
+    var disparo = array_Tablero_Ships[fila][columna];
+    
+    if(disparo == 0){
+      array_Tablero_Ships[fila][columna]=2
+    }else if (disparo==1){
+      array_Tablero_Ships[fila][columna]=3
+    }
    }
+
+   if (turno == 1){
+      turno=2;
+   }else{
+     turno =1;
+   }
+   function comprobarGanador(){
+     return 0;
+   }
+   const ganador = comprobarGanador();
+  
+   if (ganador != 0) {
+     res.render('winner', {ganador});
+   } else {
+     const meToca = (turno == session.jugador);
+     console.log('metoca: ' + meToca + ' ganador: '+ganador+' turno: '+turno+' player: '+player);
+     res.redirect('pantalla_juego');
+   }
+ 
+
+
 });
 
 module.exports = router;
